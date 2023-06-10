@@ -7,7 +7,7 @@ MVVM 과 MVI 를 섞은 형태입니다.
 View 에서 Action 과 Model 을 들고 있는 형태 입니다.  
 MVVM 에서 State 와 ViewUpdate 및 Logic 등이 분리된 형태라고 할 수 있습니다.
 
-## Sample Code
+## 💻 Sample Code
 ```Swift
 struct ContetView: MVA {
 
