@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: MVA {
     
-    
     // MARK: MVA
     typealias Action = ContentViewAction
     typealias Model = ContentViewModel
