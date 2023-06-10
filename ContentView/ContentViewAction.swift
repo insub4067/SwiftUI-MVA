@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 final class ContentViewAction: Action<ContentViewModel> {
     
-    func didTapTab(tab: TabItem) {
+    func didTapTabItem(tab: TabItem) {
         withAnimation {
             model?.currentTab = tab
         }
