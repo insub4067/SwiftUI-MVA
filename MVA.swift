@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-protocol MVA: View {
+public protocol MVA: View {
     
     associatedtype Action
     associatedtype Model
@@ -17,14 +17,14 @@ protocol MVA: View {
     @MainActor var model: Model { get }
 }
 
-protocol Actionable {
+public protocol Actionable {
     
     associatedtype Model
     
     @MainActor var model: Model? { get }
 }
 
-class Action<T: Model>: Actionable {
+@MainActor class Action<T: Model>: Actionable {
     
     weak var model: T?
     
@@ -33,4 +33,4 @@ class Action<T: Model>: Actionable {
     }
 }
 
-class Model: ObservableObject { }
+@MainActor class Model: ObservableObject { }

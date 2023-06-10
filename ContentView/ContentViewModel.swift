@@ -7,8 +7,12 @@
 
 import Foundation
 
-@MainActor
-final class ContentViewModel: Model {
+@MainActor final class ContentViewModel: Model {
     
     @Published var currentTab: TabItem = .one
+}
+
+enum TabItem: String, CaseIterable {
+    
+    case one, two, three
 }

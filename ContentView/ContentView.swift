@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ContentView: MVA {
     
+    
+    // MARK: MVA
     typealias Action = ContentViewAction
     typealias Model = ContentViewModel
     
     @StateObject var model: Model
     let action: Action
     
+    // MARK: Properties
     @Namespace var animation
     let columns: [GridItem] = Array(repeating: .init(), count: 3)
     let items: [String] = Array(repeating: .init(), count: 100)
@@ -25,6 +28,31 @@ struct ContentView: MVA {
             Content()
         }
     }
+}
+
+
+// MARK: Action
+extension ContentView {
+    
+    static func build() -> some View {
+
+        let model = ContentViewModel()
+        let action = ContentViewAction
+            .init(
+                model: model
+            )
+
+        return ContentView
+            .init(
+                model: model,
+                action: action
+            )
+    }
+}
+
+
+// MARK: SubViews
+extension ContentView {
     
     @ViewBuilder
     func TabBar() -> some View {
@@ -46,12 +74,15 @@ struct ContentView: MVA {
                                 .black
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 2)
-                                .matchedGeometryEffect(id: "underline", in: animation)
+                                .matchedGeometryEffect(
+                                    id: "underline",
+                                    in: animation
+                                )
                         }
                     }
                     .onTapGesture {
                         action
-                            .didTapTabItem(tab: tab)
+                            .didTapTab(tab: tab)
                     }
             }
         }
@@ -89,26 +120,6 @@ struct ContentView: MVA {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tabViewStyle(.page(indexDisplayMode: .never))
     }
-
-    static func build() -> some View {
-
-        let model = ContentViewModel()
-        let action = ContentViewAction
-            .init(
-                model: model
-            )
-
-        return ContentView
-            .init(
-                model: model,
-                action: action
-            )
-    }
-}
-
-enum TabItem: String, CaseIterable {
-    
-    case one, two, three
 }
 
 struct ContentView_Previews: PreviewProvider {
