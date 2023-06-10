@@ -51,7 +51,7 @@ struct ContentView: MVA {
                     }
                     .onTapGesture {
                         action
-                            .didTapTab(tab: tab)
+                            .didTapTabItem(tab: tab)
                     }
             }
         }
