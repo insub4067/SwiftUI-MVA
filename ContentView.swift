@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: MVI {
+struct ContentView: MVVM {
     
     typealias Action = ViewAction
     typealias Model = ViewModel
@@ -90,6 +90,7 @@ struct ContentView: MVI {
         .tabViewStyle(.page(indexDisplayMode: .never))
     }
 
+    @ViewBuilder
     static func build() -> some View {
         
         let model = ViewModel()
