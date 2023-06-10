@@ -15,15 +15,15 @@ struct ContetView: MVA {
   let action: Action
   
   var body: some View {
-  
-    TabView(selection: $model.currentTab) {
-      ...
-    }
-  
-    ...
-      .onTapGetsture {
-        action.didTapTabItem(tab: Tab)
+    Vstack {
+      TabItem()
+        .onTapGetsture {
+          action.didTapTabItem(tab: Tab)
+        }
+      TabView(selection: $model.currentTab) {
+        ...
       }
+    }
   }
   
   static func build() -> some View {
