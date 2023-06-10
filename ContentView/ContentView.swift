@@ -111,7 +111,6 @@ extension ContentView {
                                         .frame(maxWidth: .infinity)
                                         .frame(height: 1)
                                 }
-                            
                         }
                     }
                 }
