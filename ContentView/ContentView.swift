@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: MVA {
+struct ContentView: VAS {
     
-    // MARK: MVA
+    // MARK: VAS
     typealias Action = ContentViewAction
-    typealias Model = ContentViewModel
+    typealias State = ContentViewState
     
-    @StateObject var model: Model
+    @StateObject var state: State
     let action: Action
     
     // MARK: Properties
@@ -27,23 +27,18 @@ struct ContentView: MVA {
             Content()
         }
     }
-}
-
-
-// MARK: Action
-extension ContentView {
     
     static func build() -> some View {
 
-        let model = ContentViewModel()
+        let state = ContentViewState()
         let action = ContentViewAction
             .init(
-                model: model
+                state: state
             )
 
         return ContentView
             .init(
-                model: model,
+                state: state,
                 action: action
             )
     }
@@ -59,16 +54,16 @@ extension ContentView {
             ForEach(TabItem.allCases, id: \.self) { tab in
                 Text(tab.rawValue)
                     .font(
-                        model.currentTab == tab ?
+                        state.currentTab == tab ?
                         .title2 : .title3
                     )
                     .foregroundColor(
-                        model.currentTab == tab ?
+                        state.currentTab == tab ?
                         .black : .gray
                     )
                     .padding()
                     .background(alignment: .bottom) {
-                        if model.currentTab == tab {
+                        if state.currentTab == tab {
                             Color
                                 .black
                                 .frame(maxWidth: .infinity)
@@ -96,7 +91,7 @@ extension ContentView {
     @ViewBuilder
     func Content() -> some View {
         
-        TabView(selection: $model.currentTab) {
+        TabView(selection: $state.currentTab) {
             ForEach(TabItem.allCases, id: \.self) { tab in
                 ScrollView {
                     LazyVStack(spacing: 0) {
@@ -110,6 +105,7 @@ extension ContentView {
                                         .frame(maxWidth: .infinity)
                                         .frame(height: 1)
                                 }
+                            
                         }
                     }
                 }
