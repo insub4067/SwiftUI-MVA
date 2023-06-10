@@ -96,7 +96,7 @@ struct ContentView: MVVM {
         let model = ViewModel()
         let action = ViewAction(model: model)
 
-        return ContentView
+        ContentView
             .init(
                 model: model,
                 action: action
