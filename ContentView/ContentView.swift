@@ -13,8 +13,8 @@ struct ContentView: VAS {
     typealias Action = ContentViewAction
     typealias State = ContentViewState
     
-    @StateObject var state: State
     let action: Action
+    @StateObject var state: State
     
     // MARK: Properties
     @Namespace var animation
