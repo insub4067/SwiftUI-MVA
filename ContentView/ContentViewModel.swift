@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class ContentViewModel: ObservableObject {
+final class ContentViewModel: Model {
     
     @Published var currentTab: TabItem = .one
 }

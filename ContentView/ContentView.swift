@@ -93,8 +93,10 @@ struct ContentView: MVA {
     static func build() -> some View {
 
         let model = ContentViewModel()
-        let action = ContentViewAction()
-        action.model = model
+        let action = ContentViewAction
+            .init(
+                model: model
+            )
 
         return ContentView
             .init(
@@ -107,17 +109,6 @@ struct ContentView: MVA {
 enum TabItem: String, CaseIterable {
     
     case one, two, three
-    
-    var background: Color {
-        switch self {
-        case .one:
-            return .brown
-        case .two:
-            return .blue
-        case .three:
-            return .yellow
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {

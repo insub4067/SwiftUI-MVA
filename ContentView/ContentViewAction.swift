@@ -8,11 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class ContentViewAction: Actionable {
-    
-    typealias Model = ContentViewModel
-    
-    weak var model: ContentViewModel?
+final class ContentViewAction: Action<ContentViewModel> {
     
     func didTapTab(tab: TabItem) {
         withAnimation {
