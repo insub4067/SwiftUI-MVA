@@ -9,7 +9,7 @@ MVVM 에서 State 와 ViewUpdate 및 Logic 등이 분리된 형태라고 할 수
 
 ## 💻 Sample Code
 ```Swift
-struct ContetView: MVA {
+struct ContetView: VAS {
 
   @StateObject var state: State
   let action: Action
