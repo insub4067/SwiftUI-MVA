@@ -1,4 +1,4 @@
-# SwiftUI-MVA
+# SwiftUI-VAS
 
 ## 🤔 What and Why?
 저만의 아키택쳐인 VAS (View, Action, State) 을 만들어봤습니다.  
