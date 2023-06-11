@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-// MARK: VAS
+// MARK: VAM
 public protocol VAM: View {
     
     associatedtype Action: Actionable
