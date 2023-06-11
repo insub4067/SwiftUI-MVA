@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: VAM {
 
-    // MARK: VAS
+    // MARK: VAM
     typealias Action = ContentViewAction
     typealias Model = ContentViewModel
     
