@@ -28,15 +28,15 @@ struct ContetView: VAS {
 
     static func build() -> some View {
 
-        let state = ContentViewModel()
+        let state = ContentViewState()
         let action = ContentViewAction
             .init(
-                model: model
+                state: state
             )
 
         return ContentView
             .init(
-                model: model,
+                state: state,
                 action: action
             )
     }
