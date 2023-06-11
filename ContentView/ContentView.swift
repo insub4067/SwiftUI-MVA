@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: VAS {
-    
+struct ContentView: VAM {
+
     // MARK: VAS
     typealias Action = ContentViewAction
-    typealias State = ContentViewState
+    typealias Model = ContentViewModel
     
+    @StateObject var model: Model
     let action: Action
-    @StateObject var state: State
     
     // MARK: Properties
     @Namespace var animation
     let columns: [GridItem] = Array(repeating: .init(), count: 3)
     let items: [String] = Array(repeating: .init(), count: 100)
-
+    
     var body: some View {
         VStack(spacing: 0) {
             TabBar()
@@ -30,15 +30,15 @@ struct ContentView: VAS {
     
     static func build() -> some View {
 
-        let state = ContentViewState()
+        let model = ContentViewModel()
         let action = ContentViewAction
             .init(
-                state: state
+                model: model
             )
 
         return ContentView
             .init(
-                state: state,
+                model: model,
                 action: action
             )
     }
@@ -54,16 +54,16 @@ extension ContentView {
             ForEach(TabItem.allCases, id: \.self) { tab in
                 Text(tab.rawValue)
                     .font(
-                        state.currentTab == tab ?
+                        model.currentTab == tab ?
                         .title2 : .title3
                     )
                     .foregroundColor(
-                        state.currentTab == tab ?
+                        model.currentTab == tab ?
                         .black : .gray
                     )
                     .padding()
                     .background(alignment: .bottom) {
-                        if state.currentTab == tab {
+                        if model.currentTab == tab {
                             Color
                                 .black
                                 .frame(maxWidth: .infinity)
@@ -90,12 +90,12 @@ extension ContentView {
     
     @ViewBuilder
     func Content() -> some View {
-        
-        TabView(selection: $state.currentTab) {
+        TabView(selection: $model.currentTab) {
             ForEach(TabItem.allCases, id: \.self) { tab in
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(Array(items.enumerated()), id: \.offset) { offset, item in
+
                             Text("\(offset)")
                                 .frame(height: 120)
                                 .frame(maxWidth: .infinity)
@@ -104,6 +104,9 @@ extension ContentView {
                                         .gray
                                         .frame(maxWidth: .infinity)
                                         .frame(height: 1)
+                                }
+                                .background {
+                                    Color.white
                                 }
                         }
                     }

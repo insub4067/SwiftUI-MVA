@@ -9,33 +9,33 @@ import SwiftUI
 import Combine
 
 // MARK: VAS
-public protocol VAS: View {
+public protocol VAM: View {
     
     associatedtype Action: Actionable
-    associatedtype State: Statable
+    associatedtype Model: Modelable
     
     @MainActor var action: Action { get }
-    @MainActor var state: State { get }
+    @MainActor var model: Model { get }
 }
 
 // MARK: Action
-public protocol Actionable {
+public protocol Actionable: AnyObject {
     
-    associatedtype State
+    associatedtype Model
     
-    @MainActor var state: State? { get }
+    @MainActor var model: Model? { get }
 }
 
-@MainActor class Action<T: State>: Actionable {
+@MainActor class Action<T: Model>: Actionable {
     
-    weak var state: T?
+    weak var model: T?
     
-    init(state: T?) {
-        self.state = state
+    init(model: T?) {
+        self.model = model
     }
 }
 
-// MARK: State
-public protocol Statable { }
+// MARK: Model
+public protocol Modelable: AnyObject { }
 
-@MainActor class State: ObservableObject, Statable { }
+@MainActor class Model: ObservableObject, Modelable { }
